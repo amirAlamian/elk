@@ -1,8 +1,9 @@
 # elk
+
 elk commands
 to <span style="color:cyan"> create </span> an <span style="color:lightgreen">index </span> use this code
 
-```bash
+```json
 PUT /index_name
 {
   "settings": {
@@ -31,7 +32,7 @@ PUT /index_name
 
 to <span style="color:cyan">test </span> and <span style="color:lightgreen">Analyzer</span>, use this code.
 
-```bash
+```json
 GET _analyze
 {
   "analyzer": "english",
@@ -44,13 +45,10 @@ GET _analyze
 
 to <span style="color:cyan"> update </span>an <span style="color:lightgreen">document </span>
 
-```bash
+```json
 post amir/_update/id_of_document
 {
   "doc":{
-  "name": "ali",
-  "lastName":"nouzari",
-  "phoneNumber":9121364728,
   "age":40,
   "email":"alinozari@gmail.com"
 
@@ -59,9 +57,25 @@ post amir/_update/id_of_document
 ```
 
 <hr>
+
+to <span style="color:cyan"> replace </span>an <span style="color:lightgreen">document </span>
+
+```json
+PUT amir/_doc/id_of_document
+{
+  "doc":{
+  "age":40,
+  "email":"alinozari@gmail.com",
+  "phoneNumber":9121364728,
+  "age":40,
+  }
+}
+```
+
+<hr>
 to  <span style="color:cyan"> update </span>all <span style="color:lightgreen">documents </span>
 
-```bash
+```json
 post amir/_update
 {
   "doc":{
@@ -79,7 +93,7 @@ post amir/_update
 
 to <span style="color:cyan"> match </span> <span style="color:red"> all </span> documents in an <span style="color:lightgreen">index </span>
 
-```bash
+```json
 GET amir/_search
 {
   "query": {
@@ -91,7 +105,7 @@ GET amir/_search
 <hr>
 to  <span style="color:cyan"> match  </span> an  <span style="color:red">specefic </span> field in an <span style="color:lightgreen">document </span>
 
-```bash
+```json
 GET amir/_search
 {
   "query": {
@@ -106,7 +120,7 @@ GET amir/_search
 to  <span style="color:cyan"> match  </span>
 <span style="color:red">several </span> fields in an <span style="color:lightgreen">document </span>
 
-```bash
+```json
 GET amir/_search
 {
   "query": {
@@ -145,7 +159,7 @@ GET courses/_search
 to <span style="color:cyan"> check </span> that a field is
 <span style="color:red"> exits </span> in <span style="color:lightgreen">documents </span>
 
-```bash
+```json
 GET amir/_search
 {
   "query": {
@@ -173,7 +187,7 @@ the result will be those documents that have that field or fields
 to  <span style="color:cyan"> check  </span> that multiple fields is
 <span style="color:red"> exits </span>   in  <span style="color:lightgreen">documents </span>
 
-```bash
+```json
 GET amir/_search
 {
   "query": {
@@ -200,7 +214,7 @@ GET amir/_search
 <span style="color:cyan"> must and not_must  </span> in
 <span style="color:lightgreen">query </span>
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -235,7 +249,7 @@ GET courses/_search
 <span style="color:cyan"> sholud  </span> in
 <span style="color:lightgreen">query </span>
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -266,7 +280,7 @@ if <span style="color:cyan"> sholud </span> conditions matches a document, it wi
 <span style="color:cyan"> match_phrase  </span> in
 <span style="color:lightgreen">query </span>
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -285,7 +299,7 @@ GET courses/_search
 <span style="color:cyan"> match_phrase_prefix </span> in
 <span style="color:lightgreen">query </span>
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -304,7 +318,7 @@ GET courses/_search
 <span style="color:cyan"> range </span> in
 <span style="color:lightgreen">query </span>
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -339,7 +353,7 @@ it's for numeric fields
 <span style="color:cyan"> filter </span> in
 <span style="color:lightgreen">query </span>
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -401,7 +415,7 @@ every thing can put into the <span style="color:cyan"> filter </span> like bool,
 
 you can specify a number to a field and make it more or less important than the other fields. example:
 
-```bash
+```json
 GET courses/_search
 {
   "query": {
@@ -444,7 +458,7 @@ pay attention to the ^2 infront of course_description feild in multi_match. it w
 <span style="color:cyan"> bulk insert  </span> in
 <span style="color:lightgreen">elasticsearch </span>
 
-```bash
+```json
 POST /vehicle/_bulk
 { "index": {}}
 { "price" : 10000, "color" : "white", "make" : "honda", "sold" : "2016-10-28", "condition": "okay"}
@@ -463,7 +477,7 @@ aggregates are using to analysing datas not searcing and they not return any sco
 <span style="color:cyan"> aggregations and query </span> in
 <span style="color:lightgreen">elasticsearch </span>
 
-```bash
+```json
 GET vehicle/_search
 {
   "size": 2,
@@ -542,7 +556,7 @@ more examples of buckets and metrics:
 <span style="color:cyan"> range </span> in
 <span style="color:lightgreen">aggregations </span>
 
-```bash
+```json
 GET vehicle/_search
 {
   "size":2,
@@ -586,7 +600,7 @@ GET vehicle/_search
 <p style="color:white">more complex <span style="color:cyan"> aggregation  </span> in
 <span style="color:lightgreen">elasticsearch </span> using several buckets and metrics</p>
 
-```bash
+```json
 GET vehicle/_search
 {
   "size": 2,
@@ -630,7 +644,7 @@ GET vehicle/_search
 
 ```
 
-```bash
+```json
 GET vehicle/_search
 {
   "size": 2,
@@ -647,6 +661,65 @@ GET vehicle/_search
         }
       }
     }
+  }
+}
+
+```
+
+---
+
+<h2 style="color:lightgray"> Scripting </h2>
+
+<p style="color:white">you can use script to update your documents with extra awesome features.  </p> <span style="color:lightgreen">Examples:</span>
+
+```json
+POST /vehicles/_update/id
+{
+  "script":{
+    "source":"ctx._source.price +=100"
+  }
+}
+```
+
+you can also use params and if else ...
+
+```json
+POST /vehicles/_update/id
+{
+  "script":{
+    "source":"""
+      if(params.quan >= 1) {
+        ctx._source.price -= 1500
+      }else{
+         ctx.op= "delete"
+      }
+    """
+  ,
+  "params":{
+    "quan":0
+  }
+  }
+}
+```
+
+also you can use upserts.<br>
+upserts will generate the document if not exists otherwise they do anything.
+
+```json
+POST /vehicles/_update/id
+{
+  "script":{
+    "source":""" 
+
+        ctx._source.price -= 1500 
+    """
+  },
+  "upsert":{
+    "price" : 30000,
+    "color" : "gray",
+    "make" : "bmw",
+    "sold" : "2016-11-20",
+    "condition": "good" 
   }
 }
 

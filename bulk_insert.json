@@ -1,4 +1,4 @@
-POST /vehicles/cars/_bulk
+POST /vehicles/_bulk
 { "index": {}}
 { "price" : 10000, "color" : "white", "make" : "honda", "sold" : "2016-10-28", "condition": "okay"}
 { "index": {}}
